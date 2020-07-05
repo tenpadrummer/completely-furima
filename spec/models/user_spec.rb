@@ -11,44 +11,50 @@ RSpec.describe User, type: :model do
         expect(@user.valid?).to eq true
       end
       it "is invalid without a nickname" do
-        user = User.new(nickname: nil)
-        user.valid?
-        expect(user.errors[:nickname]).to include("can't be blank")
+        @user.nickname = nil
+        @user.valid?
+        expect(@user.errors[:nickname]).to include("can't be blank")
       end
       it "is invalid without a email" do
-        user = User.new(email: nil)
-        user.valid?
-        expect(user.errors[:email]).to include("can't be blank")
+        @user.email = nil
+        @user.valid?
+        expect(@user.errors[:email]).to include("can't be blank")
+      end
+      it "is invalid with a duplicate email" do
+        first_user = FactoryBot.create(:user, email: "test@gmail.com")
+        second_user = FactoryBot.build(:user, email: "test@gmail.com")
+        second_user.valid?
+        expect(second_user.errors[:email]).to include("has already been taken")
       end
       it "is invalid without a password" do
-        user = User.new(password: nil)
-        user.valid?
-        expect(user.errors[:password]).to include("can't be blank")
+        @user.password = nil
+        @user.valid?
+        expect(@user.errors[:password]).to include("can't be blank")
       end
       it "is invalid without a birth_day" do
-        user = User.new(birth_day: nil)
-        user.valid?
-        expect(user.errors[:birth_day]).to include("can't be blank")
+        @user.birth_day = nil
+        @user.valid?
+        expect(@user.errors[:birth_day]).to include("can't be blank")
       end
       it "is invalid without a first_name" do
-        user = User.new(first_name: nil)
-        user.valid?
-        expect(user.errors[:first_name]).to include("can't be blank")
+        @user.first_name = nil
+        @user.valid?
+        expect(@user.errors[:first_name]).to include("can't be blank")
       end
       it "is invalid without a last_name" do
-        user = User.new(last_name: nil)
-        user.valid?
-        expect(user.errors[:last_name]).to include("can't be blank")
+        @user.last_name = nil
+        @user.valid?
+        expect(@user.errors[:last_name]).to include("can't be blank")
       end
       it "is invalid without a first_name_reading" do
-        user = User.new(first_name_reading: nil)
-        user.valid?
-        expect(user.errors[:first_name_reading]).to include("can't be blank")
+        @user.first_name_reading = nil
+        @user.valid?
+        expect(@user.errors[:first_name_reading]).to include("can't be blank")
       end
       it "is invalid without a last_name_reading" do
-        user = User.new(last_name_reading: nil)
-        user.valid?
-        expect(user.errors[:last_name_reading]).to include("can't be blank")
+        @user.last_name_reading = nil
+        @user.valid?
+        expect(@user.errors[:last_name_reading]).to include("can't be blank")
       end
     end
   end

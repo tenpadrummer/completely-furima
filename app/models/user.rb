@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates_presence_of :nickname, :birth_day, :first_name, :last_name, :first_name_reading, :last_name_reading
+  validates :email, uniqueness: { case_sensitive: true }
 end
