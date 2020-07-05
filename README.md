@@ -15,8 +15,8 @@
 
 ### Association
 
-* has_many :items, dependent: :destroy
-* has_many :item_purchases, dependent: :destroy
+- has_many :items, dependent: :destroy
+- has_many :item_purchases, dependent: :destroy
 
 ## addresses table
 
@@ -32,7 +32,7 @@
 
 ### Association
 
-* belongs_to :item
+- belongs_to :item
 
 ## items table
 
