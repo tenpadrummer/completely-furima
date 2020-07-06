@@ -4,7 +4,6 @@ RSpec.describe Item, type: :model do
   let(:user) { FactoryBot.create(:user) }
   let(:item) {FactoryBot.create(:item, :with_image, user_id: user.id)}
 
-
   describe "item create" do
     context "create item completely" do
       it "is valid perfectly" do
@@ -12,6 +11,7 @@ RSpec.describe Item, type: :model do
       end
     end
     context "doesn't create item" do
+
       it "is invalid without a name" do
         item.name = nil
         item.valid?
