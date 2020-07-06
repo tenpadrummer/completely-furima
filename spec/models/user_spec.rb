@@ -11,7 +11,8 @@ RSpec.describe User, type: :model do
       it "is valid perfectly" do
         expect(@user.valid?).to eq true
       end
-
+    end
+    context "doesn't create user" do
       it "is invalid without a nickname" do
         @user.nickname = nil
         @user.valid?

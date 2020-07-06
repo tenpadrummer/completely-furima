@@ -18,4 +18,6 @@ class User < ApplicationRecord
   validates :password, length: {minimum: 6}, format: { with: PASSWORD_REGEX }
   validates :first_name, :last_name, format: { with: JAPANESE_REGEX}
   validates :first_name_reading, :last_name_reading, format: {with: FULL_WIDTH_REGEX }
+
+  has_many :items, dependent: :destroy
 end
