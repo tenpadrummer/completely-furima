@@ -2,13 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   let(:user) { FactoryBot.create(:user) }
-  let(:item) {FactoryBot.create(:item, user_id: user.id)}
+  let(:item) {FactoryBot.create(:item, :with_image, user_id: user.id)}
 
 
   describe "item create" do
     context "create item completely" do
       it "is valid perfectly" do
-        pp item
         expect(item.valid?).to eq true
       end
     end
@@ -17,6 +16,12 @@ RSpec.describe Item, type: :model do
         item.name = nil
         item.valid?
         expect(item.errors[:name]).to include("can't be blank")
+      end
+
+      it "is invalid without a image" do
+        item.image = nil
+        item.valid?
+        expect(item.errors[:image]).to include("can't be blank")
       end
 
       it "is invalid without a price" do
