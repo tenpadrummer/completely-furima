@@ -1,9 +1,12 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  
+
   has_one_attached :image
 
   belongs_to :user
+  has_one :item_purchase, dependent: :destroy
+  has_one :address, dependent: :destroy
+
   belongs_to_active_hash :scheduled_delivery
   belongs_to_active_hash :shipping_fee_status
   belongs_to_active_hash :prefecture
