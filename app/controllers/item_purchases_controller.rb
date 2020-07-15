@@ -3,9 +3,7 @@ class ItemPurchasesController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    if set_item.item_purchase != nil || current_user.id == set_item.user_id
-      redirect_to root_url
-    end
+    redirect_to root_url if !set_item.item_purchase.nil? || current_user.id == set_item.user_id
     @item_purchase = BuyItem.new
   end
 
@@ -23,8 +21,7 @@ class ItemPurchasesController < ApplicationController
   private
 
   def item_purchase_params
-    params.permit(:postal_code, :prefecture, :city, :address, :building, :phone_number, :item_id, :token
-    ).merge(user_id: current_user.id)
+    params.permit(:postal_code, :prefecture, :city, :address, :building, :phone_number, :item_id, :token).merge(user_id: current_user.id)
   end
 
   def set_item
@@ -32,11 +29,11 @@ class ItemPurchasesController < ApplicationController
   end
 
   def pay
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: item_purchase_params[:token],
-      currency:'jpy'
+      currency: 'jpy'
     )
   end
 end
