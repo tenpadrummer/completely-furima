@@ -21,6 +21,15 @@ class ItemsController < ApplicationController
     end
   end
 
+  def update
+    if current_user.id == @item.user_id
+      @item.update(item_params)
+      return redirect_to item_path if @item.valid?
+    else
+      flash[:notice] = '編集に失敗しました'
+      render 'edit'
+    end
+  end
   def destroy
     if current_user.id == @item.user_id
       @item.destroy
