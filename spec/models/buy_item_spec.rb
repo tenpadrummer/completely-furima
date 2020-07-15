@@ -15,9 +15,9 @@ RSpec.describe BuyItem, type: :model do
     end
     context "failure to buy item" do
       it "is invalid without a card_token" do
-        pay.card_token = nil
+        pay.token = nil
         pay.valid?
-        expect(pay.errors[:card_token]).to include("can't be blank")
+        expect(pay.errors[:token]).to include("can't be blank")
       end
       it "is invalid without a postal_code" do
         pay.postal_code = nil
