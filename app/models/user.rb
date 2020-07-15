@@ -20,4 +20,5 @@ class User < ApplicationRecord
   validates :first_name_reading, :last_name_reading, format: {with: FULL_WIDTH_REGEX }
 
   has_many :items, dependent: :destroy
+  has_many :item_purchase, dependent: :destroy
 end
