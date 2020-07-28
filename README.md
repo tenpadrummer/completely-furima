@@ -11,7 +11,7 @@
 | last_name          | string              | null: false             |
 | first_name_reading | string              | null: false             |
 | last_name_reading  | string              | null: false             |
-| birth_day          | integer             | null: false             |
+| birth_day          | date             | null: false             |
 
 ### Association
 
@@ -22,7 +22,7 @@
 
 | Column       | Type    | Options           |
 |--------------|---------|-------------------|
-| postal_code  | integer | null: false       |
+| postal_code  | string  | null: false       |
 | prefecture   | integer | null: false       |
 | city         | string  | null: false       |
 | address      | string  | null: false       |
