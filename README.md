@@ -32,7 +32,7 @@
 
 ### Association
 
-- belongs_to :item
+- belongs_to :item_purchase
 
 ## items table
 
@@ -51,8 +51,7 @@
 ### Association
 
 - belongs_to :user
-- has_one :item_purchases, dependent: :destroy
-- has_one :address, dependent: :destroy
+- has_one :item_purchase, dependent: :destroy
 
 ## item_purchases table
 
@@ -65,3 +64,4 @@
 
 - belongs_to :item
 - belongs_to :user
+- has_one :address
