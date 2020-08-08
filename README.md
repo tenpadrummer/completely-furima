@@ -28,7 +28,7 @@
 | address      | string  | null: false       |
 | building     | string  |                   |
 | phone_number | string  | null: false       |
-| item_id(FK)  | integer | foreign_key: true |
+| item_purchase_id(FK)  | integer | foreign_key: true |
 
 ### Association
 
