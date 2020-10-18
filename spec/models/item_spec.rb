@@ -100,6 +100,18 @@ RSpec.describe Item, type: :model do
         item.valid?
         expect(item.errors[:price]).to include('is not included in the list')
       end
+
+      it 'is invalid that price is not included in 300..9999999' do
+        item.price = 1000 * 10000
+        item.valid?
+        expect(item.errors[:price]).to include('is not included in the list')
+      end
+
+      it 'is invalid that price should be half size number' do
+        item.price = "price"
+        item.valid?
+        expect(item.errors[:price]).to include("is not a number")
+      end
     end
   end
 end

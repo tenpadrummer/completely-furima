@@ -28,11 +28,6 @@ RSpec.describe BuyItem, type: :model do
         pay.valid?
         expect(pay.errors[:postal_code]).to include('is invalid')
       end
-      it 'is invalid if postal_code is not 7 numbers' do
-        pay.postal_code = '1'
-        pay.valid?
-        expect(pay.errors[:postal_code]).to include('is invalid')
-      end
       it 'is invalid without a prefecture' do
         pay.prefecture = nil
         pay.valid?
@@ -66,11 +61,6 @@ RSpec.describe BuyItem, type: :model do
       end
       it 'is invalid that a phone_number is eleven or more' do
         pay.phone_number = '0901234567891234'
-        pay.valid?
-        expect(pay.errors[:phone_number]).to include('is invalid')
-      end
-      it 'is invalid that a phone_number is eleven or less' do
-        pay.phone_number = '090123'
         pay.valid?
         expect(pay.errors[:phone_number]).to include('is invalid')
       end
