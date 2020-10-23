@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_item, except: [:index, :new, :create]
+  before_action :set_item, except: [:index, :new, :create, :search]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -38,6 +38,12 @@ class ItemsController < ApplicationController
       flash[:notice] = '削除に失敗しました'
       render 'show'
     end
+  end
+
+  def search
+    return nil if params[:input] == ""
+    tag = Tag.where(['tag_name LIKE ?', "%#{params[:input]}%"] ) #tag_nameであいまい検索
+    render json:{ keyword: tag } #「keyword」というキーに対応するバリューとしてtagをセット、JSONで返します。
   end
 
   private
