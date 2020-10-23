@@ -6,6 +6,8 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :item_purchase, dependent: :destroy
   has_one :address, dependent: :destroy
+  has_many :item_tags
+  has_many :tags, through: :item_tags
 
   belongs_to_active_hash :scheduled_delivery
   belongs_to_active_hash :shipping_fee_status
