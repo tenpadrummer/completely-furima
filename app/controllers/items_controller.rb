@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_item, except: [:index, :new, :create]
+  before_action :set_item, except: [:index, :new, :create, :search]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -11,12 +11,11 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
-    if @item.valid?
-      @item.save
-      redirect_to root_path
+    @item_tag = TagForm.new(item_params)
+    if @item_tag.valid?
+      @item_tag.save
+      return redirect_to root_path
     else
-      flash[:notice] = '出品に失敗しました'
       render 'new'
     end
   end
@@ -41,10 +40,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    return nil if params[:input] == ""
+    tag = Tag.where(['tag_name LIKE ?', "%#{params[:input]}%"] ) #tag_nameであいまい検索
+    render json:{ keyword: tag } #「keyword」というキーに対応するバリューとしてtagをセット、JSONで返します。
+  end
+
   private
 
   def item_params
-    params.require(:item).permit(:name, :price, :description, :scheduled_delivery_id, :shipping_fee_status_id, :prefecture_id, :sales_status_id, :category_id, images: []).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :description, :scheduled_delivery_id, :shipping_fee_status_id, :prefecture_id, :sales_status_id, :category_id, :tag_name, images: []).merge(user_id: current_user.id)
   end
 
   def set_item
