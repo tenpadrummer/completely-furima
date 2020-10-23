@@ -35,6 +35,12 @@
     <table class="detail-table">
       <tbody>
         <tr>
+          <th class="detail-item">タグ</th>
+          <% @item.tags.each do |tag| %>
+            <td class="detail-value"><%= tag.tag_name %></td>
+          <%end%>
+        </tr>
+        <tr>
           <th class="detail-item">出品者</th>
           <td class="detail-value"><%= @item.user.nickname %></td>
         </tr>

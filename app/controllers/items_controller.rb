@@ -11,12 +11,11 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
-    if @item.valid?
-      @item.save
-      redirect_to root_path
+    @item_tag = TagForm.new(item_params)
+    if @item_tag.valid?
+      @item_tag.save
+      return redirect_to root_path
     else
-      flash[:notice] = '出品に失敗しました'
       render 'new'
     end
   end
@@ -44,7 +43,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :price, :description, :scheduled_delivery_id, :shipping_fee_status_id, :prefecture_id, :sales_status_id, :category_id, images: []).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :description, :scheduled_delivery_id, :shipping_fee_status_id, :prefecture_id, :sales_status_id, :category_id, :tag_name, images: []).merge(user_id: current_user.id)
   end
 
   def set_item
