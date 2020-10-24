@@ -17,14 +17,15 @@ consumer.subscriptions.create("CommentChannel", {
                         ${data.user_name}
                       </div>
                       <div class="comment_upper-info--date">
-                        ${data.time}
+                        ${data.time} 投稿
                       </div>
                     </div>
                     <div class="comment_text">
                       <p>${data.content}</p>
                     </div>
-                  </div>`; // dataの中にあるcontentの中のtextを表示。
-    const comments = document.getElementById('comments-box');
+                  </div>
+                  <hr />`; // dataの中にあるcontentの中のtextを表示。
+    const comments = document.getElementById('comments');
     const input =document.getElementById('comment-form');
     comments.insertAdjacentHTML('afterbegin', html);
     input.reset();

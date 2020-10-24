@@ -80,7 +80,7 @@
   </div>
   <div class="comment-box">
     <%= form_with model: [@item, @comment], id: 'comment-form', local: true do |f| %>
-      <%= f.text_area :content , id: "comment-text" %>
+      <%= f.text_area :content , class: "comment-text", id: "comment-text", rows: 2, cols: 60 %>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
         <br>
@@ -93,7 +93,7 @@
     <% end %>
   </div>
   <div id="comments-box">
-    <span>コメント一覧</span>
+    <span class="comment-title">コメント一覧</span>
     <div id="comments">
       <% unless @comments%>
         <h5>コメントはありません。</h5>
@@ -105,13 +105,14 @@
                 <%=comment.user.nickname%>
               </div>
               <div class="comment_upper-info--date">
-                <%=comment.created_at%>
+                <%=comment.created_at.strftime("%F, %I:%M%#p") %> 投稿
               </div>
             </div>
-            <div id="comment_text">
+            <div id="comment_text" class="comment_text">
               <p><%= comment.content%></p>
             </div>
           </div>
+          <hr />
         <% end %>
       <% end %>
     </div>
