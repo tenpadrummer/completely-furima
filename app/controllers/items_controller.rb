@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_item, except: [:index, :new, :create, :search]
+  before_action :set_item, except: [:index, :new, :create, :tag_search, :item_search]
+  before_action :search_item, only: [:index, :item_search]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -40,10 +41,14 @@ class ItemsController < ApplicationController
     end
   end
 
-  def search
+  def tag_search
     return nil if params[:input] == ""
     tag = Tag.where(['tag_name LIKE ?', "%#{params[:input]}%"] ) #tag_nameであいまい検索
     render json:{ keyword: tag } #「keyword」というキーに対応するバリューとしてtagをセット、JSONで返します。
+  end
+
+  def item_search
+    @results = @i.result # @iに対して「.result」とすることで、検索結果を取得
   end
 
   private
@@ -54,5 +59,11 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def search_item
+    @i = Item.ransack(params[:q])
+    #キー（:q）を使用し、itemsテーブルから商品情報を探す。
+    # そして、「@i」という名前の検索オブジェクトを生成。
   end
 end

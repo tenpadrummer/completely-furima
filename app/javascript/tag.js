@@ -4,7 +4,7 @@ if (location.pathname.match("items/new")){ //items/newのURLに一致してい�
     inputElement.addEventListener("keyup", (e) => { // 上記が取得でき、キーボードのキーを離したときにイベントを発生させる
       const input = document.getElementById("item_tag_name").value; //入力されたタグの値を取得
       const xhr = new XMLHttpRequest(); //Ajax (非同期通信) に使われる組み込みオブジェクト
-      xhr.open("GET", `search/?input=${input}`, true); //HTTPリクエストはGET、searchアクションへのパスを設定
+      xhr.open("GET", `tag_search/?input=${input}`, true); //HTTPリクエストはGET、searchアクションへのパスを設定
       xhr.responseType = "json"; //レスポンスはJSONで返す
       xhr.send();
       xhr.onload = () => { //ajax通信が正常に動作したら動かす関数
