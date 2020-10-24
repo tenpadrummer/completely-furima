@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   has_one :address, dependent: :destroy
   has_many :item_tags, dependent: :destroy
   has_many :tags, through: :item_tags, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   belongs_to_active_hash :scheduled_delivery
   belongs_to_active_hash :shipping_fee_status
