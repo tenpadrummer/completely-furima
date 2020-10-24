@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'comments/new'
   devise_for :users
   root "items#index"
   resources :items, except: [:index] do
