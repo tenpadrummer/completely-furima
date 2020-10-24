@@ -12,8 +12,8 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
       blobImage.setAttribute('src', blob); //imgの属性にsrcをセット。その際に画像情報のURLを渡す
 
       const inputHTML = document.createElement('input') //file_fieldのinputを生成
-      inputHTML.setAttribute('id', `message_image_${imageElementNum}`) //生成するinputのid属性
-      inputHTML.setAttribute('name', 'message[images][]') //生成するinputのname属性
+      inputHTML.setAttribute('id', `item_image_${imageElementNum}`) //生成するinputのid属性
+      inputHTML.setAttribute('name', 'item[images][]') //生成するinputのname属性
       inputHTML.setAttribute('type', 'file')　//生成するinputのtype属性
 
       imageElement.appendChild(blobImage); //生成した要素をブラウザに表示
