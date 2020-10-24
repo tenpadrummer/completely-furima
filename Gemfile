@@ -12,6 +12,7 @@ gem 'devise'
 gem 'active_hash'
 gem 'payjp'
 gem 'ransack'
+gem "gretel"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
