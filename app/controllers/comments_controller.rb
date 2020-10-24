@@ -4,8 +4,12 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @item.comments.new(comment_params)
-    @comment.save!
-    redirect_to root_path
+    if @comment.save
+      ActionCable.server.broadcast 'comment_channel', content: @comment.content, time: @comment.created_at , user_name: @comment.user.nickname
+      # broadcastとはサーバーから送られるデータの経路のこと。broadcastを介してデータをクライアントに送信。
+      # ここではbroadcastを使用し'comment_channel'に向けて@commentを送信
+      # 送信された情報は、comment_channel.jsで受け取る
+    end
   end
 
   private

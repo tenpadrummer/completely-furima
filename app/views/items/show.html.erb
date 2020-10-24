@@ -79,7 +79,7 @@
     </div>
   </div>
   <div class="comment-box">
-    <%= form_with model: [@item, @comment], local: true do |f| %>
+    <%= form_with model: [@item, @comment], id: 'comment-form', local: true do |f| %>
       <%= f.text_area :content , id: "comment-text" %>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
@@ -91,6 +91,30 @@
         <span>コメントする</span>
       </button>
     <% end %>
+  </div>
+  <div id="comments-box">
+    <span>コメント一覧</span>
+    <div id="comments">
+      <% unless @comments%>
+        <h5>コメントはありません。</h5>
+      <% else %>
+        <% @comments.reverse_each do |comment| %>
+          <div class="comment">
+            <div class="comment_upper-info">
+              <div class="comment_upper-info--user">
+                <%=comment.user.nickname%>
+              </div>
+              <div class="comment_upper-info--date">
+                <%=comment.created_at%>
+              </div>
+            </div>
+            <div id="comment_text">
+              <p><%= comment.content%></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
   </div>
   <div class="links">
     <a href="#" class="change-item-btn">
