@@ -118,12 +118,12 @@
     </div>
   </div>
   <div class="links">
-    <a href="#" class="change-item-btn">
-      ＜ 前の商品
-    </a>
-    <a href="#" class="change-item-btn">
-      後ろの商品 ＞
-    </a>
+    <div class="change-item-btn">
+      <%= link_to "＜ 前の商品", item_path(@item.previous) if @item.previous%>
+    </div>
+    <div class="change-item-btn">
+      <%= link_to "次の商品 ＞", item_path(@item.next) if @item.next %>
+    </div>
   </div>
   <a href="#" class='another-item'><%= "商品のカテゴリー名" %>をもっと見る</a>
 </div>

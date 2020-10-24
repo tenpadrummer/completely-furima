@@ -20,4 +20,12 @@ class Item < ApplicationRecord
   validates :scheduled_delivery_id, :shipping_fee_status_id, :prefecture_id, :sales_status_id, :category_id, presence: true, numericality: { other_than: 0 }
   validates :price, inclusion: { in: 300..9_999_999 }
   validates :price, numericality: { with: /\A[0-9]+\z/ }
+
+  def previous
+    user.items.order('created_at desc, id desc').where('created_at <= ? and id < ?', created_at, id).first
+  end
+
+  def next
+    user.items.order('created_at desc, id desc').where('created_at >= ? and id > ?', created_at, id).reverse.first
+  end
 end
