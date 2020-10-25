@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_24_101326) do
+ActiveRecord::Schema.define(version: 2020_10_25_025208) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -93,6 +93,19 @@ ActiveRecord::Schema.define(version: 2020_10_24_101326) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "postal_code", null: false
+    t.integer "prefecture_id", null: false
+    t.string "city", null: false
+    t.string "addresses", null: false
+    t.string "building"
+    t.string "phone_number"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_infos_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", default: "", null: false
     t.string "email", default: "", null: false
@@ -118,4 +131,5 @@ ActiveRecord::Schema.define(version: 2020_10_24_101326) do
   add_foreign_key "item_purchases", "users"
   add_foreign_key "item_tags", "items"
   add_foreign_key "item_tags", "tags"
+  add_foreign_key "user_infos", "users"
 end
