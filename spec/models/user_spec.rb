@@ -55,7 +55,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors[:password]).to include('is invalid')
       end
 
-      it "is invalid without a password_confirmation" do
+      it 'is invalid without a password_confirmation' do
         @user.password_confirmation = ''
         @user.valid?
         expect(@user.errors[:password_confirmation]).to include("doesn't match Password")

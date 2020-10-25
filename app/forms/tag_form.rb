@@ -4,7 +4,7 @@ class TagForm
 
   validates_presence_of :name, :images, :price, :description, :tag_name
   validates :scheduled_delivery_id, :shipping_fee_status_id, :prefecture_id, :sales_status_id, :category_id, presence: true, numericality: { other_than: 0 }
-  validates :price, numericality: { with: /\A[0-9]+\z/, greater_than: 299, less_than:10000000 }
+  validates :price, numericality: { with: /\A[0-9]+\z/, greater_than: 299, less_than: 10_000_000 }
 
   def save
     item = Item.create(

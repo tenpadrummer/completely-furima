@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
     @item_tag = TagForm.new(item_params)
     if @item_tag.valid?
       @item_tag.save
-      return redirect_to root_path
+      redirect_to root_path
     else
       render 'new'
     end
@@ -47,9 +47,10 @@ class ItemsController < ApplicationController
   end
 
   def tag_search
-    return nil if params[:input] == ""
-    tag = Tag.where(['tag_name LIKE ?', "%#{params[:input]}%"] ) #tag_nameであいまい検索
-    render json:{ keyword: tag } #「keyword」というキーに対応するバリューとしてtagをセット、JSONで返します。
+    return nil if params[:input] == ''
+
+    tag = Tag.where(['tag_name LIKE ?', "%#{params[:input]}%"]) # tag_nameであいまい検索
+    render json: { keyword: tag } # 「keyword」というキーに対応するバリューとしてtagをセット、JSONで返します。
   end
 
   def item_search
@@ -68,7 +69,7 @@ class ItemsController < ApplicationController
 
   def search_item
     @i = Item.ransack(params[:q])
-    #キー（:q）を使用し、itemsテーブルから商品情報を探す。
+    # キー（:q）を使用し、itemsテーブルから商品情報を探す。
     # そして、「@i」という名前の検索オブジェクトを生成。
   end
 end
