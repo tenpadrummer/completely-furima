@@ -1,6 +1,6 @@
 <% breadcrumb :user_info %>
 <%= render "shared/second-header"%>
-<%= form_with model: @user_info, url: users_create_address_preset_path, method: :post, class: 'registration-main', local: true do |f| %>
+<%= form_with model: @user_info, url: users_create_user_info_path, method: :post, class: 'registration-main', local: true do |f| %>
 <div class='form-wrap'>
   <div class='form-header'>
     <h1 class='form-header-text'>
@@ -20,7 +20,7 @@
       <label class="form-text">都道府県</label>
       <span class="indispensable">必須</span>
     </div>
-    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name) %>
+    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {prompt: ""}) %>
   </div>
   <div class="form-group">
     <div class='form-text-wrap'>
