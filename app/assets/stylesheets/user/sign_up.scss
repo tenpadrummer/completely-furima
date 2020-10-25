@@ -1,3 +1,15 @@
-// Place all the styles related to the sign_up controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#user-registration-complete-wrapper{
+  display: flex;
+  flex-direction: column;
+  padding: 0 10rem;
+  align-items: center;
+}
+
+#user-registration-complete-title{
+  margin: 3rem 0;
+  font-weight: bold;
+}
+
+#user-registration-complete-root-btn{
+  margin: 3rem 0;
+}
