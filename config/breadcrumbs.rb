@@ -9,6 +9,10 @@ crumb :signup do
   link "新規登録", new_user_registration_path
   parent :root
 end
+crumb :user_info do
+  link "ユーザー詳細情報", users_new_user_info_path
+  parent :signup
+end
 crumb :show do
   link "商品詳細", item_path
   parent :root
