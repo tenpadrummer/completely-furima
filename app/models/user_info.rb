@@ -1,4 +1,7 @@
 class UserInfo < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :prefecture
+
   belongs_to :user
 
   validates_presence_of :postal_code, :city, :addresses, :prefecture_id

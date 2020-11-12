@@ -37,3 +37,8 @@ crumb :search do
   link "商品検索結果", item_search_items_path
   parent :root
 end
+
+crumb :mypage do
+  link "マイページ", user_path
+  parent :root
+end

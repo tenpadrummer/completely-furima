@@ -1,0 +1,103 @@
+<% breadcrumb :mypage %>
+<%= render "shared/second-header" %>
+<div class="form-group">
+  <div class='form-text-wrap'>
+    <label class="form-text">ニックネーム</label>
+  </div>
+  <div class="input-default">
+    <%= @user.nickname %>
+  </div>
+</div>
+<div class="form-group">
+  <div class='form-text-wrap'>
+    <label class="form-text">メールアドレス</label>
+  </div>
+  <div class="input-default">
+    <%= @user.email %>
+  </div>
+</div>
+<div class="form-group">
+  <div class='form-text-wrap'>
+    <label class="form-text">名前</label>
+  </div>
+  <div class='input-name-wrap'>
+    <div class="input-default">
+      <%= @user.first_name %>
+    </div>
+    <div class="input-default">
+      <%= @user.last_name %>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <div class='form-text-wrap'>
+    <label class="form-text">フリガナ</label>
+  </div>
+  <div class='input-name-wrap'>
+    <div class="input-default">
+      <%= @user.first_name_reading %>
+    </div>
+    <div class="input-default">
+      <%= @user.last_name_reading %>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <div class='form-text-wrap'>
+    <label class="form-text">生年月日</label>
+  </div>
+  <div class='input-default'>
+    <%= @user.birth_day.strftime('%Y年%m月%d日').to_s %>
+  </div>
+</div>
+<div class="form-group">
+  <div class='form-text-wrap'>
+    <label class="form-text">登録郵便番号</label>
+  </div>
+  <div class='input-default'>
+    <%= @user_info.postal_code %>
+  </div>
+</div>
+<div class="form-group">
+  <div class='form-text-wrap'>
+    <label class="form-text">都道府県</label>
+  </div>
+  <div class='input-default'>
+    <%= @user_info.prefecture.name %>
+  </div>
+</div>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">市町区村</label>
+    </div>
+    <div class='input-default'>
+      <%= @user_info.city %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">番地</label>
+    </div>
+    <div class='input-default'>
+      <%= @user_info.addresses %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">建物名</label>
+    </div>
+    <div class='input-default'>
+      <%= @user_info.building %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">電話番号</label>
+    </div>
+    <div class='input-default'>
+      <%= @user_info.phone_number %>
+    </div>
+  </div>
+</div>
+<br>
+<%= render "shared/second-footer"%>
