@@ -15,5 +15,5 @@ Rails.application.routes.draw do
       get 'item_search'
     end
   end
-  resources :users, only: [:show]
+  resources :users, only: [:show, :destroy]
 end
