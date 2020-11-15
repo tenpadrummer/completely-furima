@@ -60,9 +60,25 @@
 
 }
 
+#category {
+  display: none;
+}
+
+#category a {
+  display: list-item;
+}
+
+#brand {
+  display: none;
+}
+
+#brand a {
+  display: list-item;
+}
+
 .category-list {
   text-decoration: none;
-  margin-right: 3vw;
+  padding-right: 1vw;
   color: #333333;
 }
 
