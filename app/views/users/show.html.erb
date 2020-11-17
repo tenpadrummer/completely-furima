@@ -1,5 +1,21 @@
 <% breadcrumb :mypage %>
 <%= render "shared/second-header" %>
+<div class='histories'>
+  <%= link_to "#", class:"purchase-histories", id:"purchase-histories" do %>
+    直近の購入履歴をみる
+    <%= javascript_tag do %>
+      latest_item = <%= raw @latest_item.to_json %>;
+    <% end %>
+  <% end %>
+  <div id="purchase-history"></div>
+  <%= link_to "#", class:"sell-histories", id:"sell-histories" do %>
+    直近の出品履歴をみる
+    <%= javascript_tag do %>
+      sell_item = <%= raw @sell_item.to_json %>;
+    <% end %>
+  <% end %>
+  <div id="sell-history"></div>
+</div>
 <div class="form-group">
   <div class='form-text-wrap'>
     <label class="form-text">ニックネーム</label>
