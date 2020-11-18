@@ -109,56 +109,36 @@
     </ul>
   </div>
   <div class='item-contents'>
-    <h2 class='title'>ピックアップカテゴリー</h2>
-    <%= link_to '新規投稿商品', root_path, class: "subtitle" %>
-    <ul class='item-lists'>
-      <% if @items.length != 0 %>
-        <li class='list'>
-          <% @items.each do |item| %>
-            <%= link_to item_path(item) do %>
-              <div class='item-img-content'>
-                <%= image_tag item.images[0], class: "item-img" %>
-                <% if item.item_purchase != nil %>
-                  <div class='sold-out'>
-                    <span>Sold Out!!</span>
-                  </div>
-                <% end %>
-              </div>
-              <div class='item-info'>
-                <h3 class='item-name'>
-                  <%= item.name %>
-                </h3>
-                <div class='item-price'>
-                  <span><%= item.price %>円<br>(税込み)</span>
-                  <div class='star-btn'>
-                    <%= image_tag "star.png", class:"star-icon" %>
-                    <span class='star-count'>0</span>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-        </li>
-      <% else %>
-        <li class='list'>
-          <%= link_to new_item_path do %>
-            <%= image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: "item-img" %>
-            <div class='item-info'>
-              <h3 class='item-name'>
-                商品を出品してね！
-              </h3>
-              <div class='item-price'>
-                <span>99999999円<br>(税込み)</span>
-                <div class='star-btn'>
-                  <%= image_tag "star.png", class:"star-icon" %>
-                  <span class='star-count'>0</span>
-                </div>
+    <%if @items.exists? %>
+      <h2 class='title'>人気のカテゴリー</h2>
+      <h4 class="subtitle">レディース新着アイテム</h4>
+      <%= render partial: "item_list", collection: @ladies %>
+      <h4 class="subtitle">メンズ新着アイテム</h4>
+      <%= render partial: "item_list", collection: @mens %>
+      <h4 class="subtitle">スポーツ・レジャー新着アイテム</h4>
+      <%= render partial: "item_list", collection: @sports %>
+      <h4 class="subtitle">おもちゃ・ホビー・グッズ新着アイテム</h4>
+      <%= render partial: "item_list", collection: @hobbies %>
+    <% else %>
+      <h2 class='title'>出品されている商品はまだありません</h2>
+      <ol class='list'>
+        <%= link_to new_item_path do %>
+          <%= image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: "item-img" %>
+          <div class='item-info'>
+            <h3 class='item-name'>
+              商品を出品してね！
+            </h3>
+            <div class='item-price'>
+              <span>99999999円<br>(税込み)</span>
+              <div class='star-btn'>
+                <%= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
               </div>
             </div>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
+          </div>
+        <% end %>
+      </ol>
+    <% end %>
   </div>
 </div>
 <div class='purchase-btn'>

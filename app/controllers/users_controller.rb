@@ -4,8 +4,10 @@ class UsersController < ApplicationController
   def show
     @user_info = @user.user_info
     @sell_item = @user.items.find_by(user_id: current_user.id)
-    @purchase_item = @user.item_purchase.find_by(user_id: current_user)
-    @latest_item = @purchase_item.item
+    if @user.item_purchase.exists?
+      purchase_item = @user.item_purchase.find_by(user_id: current_user)
+      @latest_item = purchase_item.item
+    end
   end
 
   def destroy

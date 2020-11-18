@@ -7,6 +7,10 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order(created_at: :desc)
+    @ladies = Item.where(category_id: 1)
+    @mens = Item.where(category_id: 2)
+    @sports = Item.where(category_id: 9)
+    @hobbies = Item.where(category_id: 6)
   end
 
   def show

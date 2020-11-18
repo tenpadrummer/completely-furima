@@ -245,9 +245,16 @@ a {
 }
 
 .item-lists>.list {
-  width: 37vh;
   padding: 1vw;
   background-color: #FFF;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item-lists a {
+  padding: 1vw;
+  margin: 0 20px;
 }
 
 
