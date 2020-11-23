@@ -1,0 +1,11 @@
+<% if !Bookmark.exists?(user: current_user, item_id: @item.id) %>
+  <%= link_to item_bookmarks_path(@item), method: :post, id: :"button-edit-#{@item.id}", remote: true do %>
+    <%= image_tag "star.png", class:"favorite-star-icon" ,width:"20", height:"20" %>
+    <span>お気に入りに追加する</span>
+  <% end %>
+<% else %>
+  <%= link_to item_bookmarks_path(@item), method: :delete, id: :"button-edit-#{@item.id}", remote: true do %>
+    <%= image_tag "star.png", class:"favorite-star-icon" ,width:"20", height:"20" %>
+    <span>お気に入りから削除する</span>
+  <% end %>
+<% end %>

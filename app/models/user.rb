@@ -23,4 +23,6 @@ class User < ApplicationRecord
   has_many :item_purchase, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_one :user_info, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_items, through: :bookmarks, source: :item
 end
