@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     collection do
       get 'tag_search'
       get 'item_search'
+      get 'category_search'
     end
   end
   resources :users, only: [:show, :destroy]
