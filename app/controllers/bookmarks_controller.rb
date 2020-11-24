@@ -1,6 +1,11 @@
 class BookmarksController < ApplicationController
-  before_action :set_item
+  before_action :set_item, except: [:index]
   before_action :authenticate_user!
+
+  def index
+    bookmarks = Bookmark.where(user_id: current_user.id).pluck(:item_id)
+    @bookmarks = Item.find(bookmarks)
+  end
 
   def create
     if @item.user_id != current_user.id

@@ -18,4 +18,5 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: [:show, :destroy]
+  resources :bookmarks, only: [:index]
 end
