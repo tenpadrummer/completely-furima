@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   has_many :item_tags, dependent: :destroy
   has_many :tags, through: :item_tags, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   belongs_to_active_hash :scheduled_delivery
   belongs_to_active_hash :shipping_fee_status
@@ -27,5 +28,9 @@ class Item < ApplicationRecord
 
   def next
     user.items.order('created_at desc, id desc').where('created_at >= ? and id > ?', created_at, id).reverse.first
+  end
+
+  def bookmark_by?(user)
+    bookmarks.where(user_id: user.id).exists?
   end
 end

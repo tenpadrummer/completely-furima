@@ -38,6 +38,11 @@ crumb :search do
   parent :root
 end
 
+crumb :bookmark do
+  link "お気に入り商品", bookmarks_path
+  parent :root
+end
+
 crumb :mypage do
   link "マイページ", user_path
   parent :root

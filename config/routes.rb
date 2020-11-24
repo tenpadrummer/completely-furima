@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :items, except: [:index] do
     resources :item_purchases, only: [:index, :new, :create]
     resources :comments, only: [:create]
+    resource :bookmarks, only: [:create, :destroy]
     collection do
       get 'tag_search'
       get 'item_search'
@@ -17,4 +18,5 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: [:show, :destroy]
+  resources :bookmarks, only: [:index]
 end

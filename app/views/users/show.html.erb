@@ -121,6 +121,11 @@
 </div>
 <div class='delete-btn'>
   <div class="delete-red-btn">
+    <%= link_to "お気に入りの商品を見る", bookmarks_path %>
+  </div>
+</div>
+<div class='delete-btn'>
+  <div class="delete-red-btn">
     <%= link_to "退会する", user_path(@user), method: :delete, data: { confirm: "本当に退会しますか？" } %>
   </div>
 </div>

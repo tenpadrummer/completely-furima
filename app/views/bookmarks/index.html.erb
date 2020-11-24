@@ -1,0 +1,31 @@
+<% breadcrumb :bookmark %>
+<%= render "shared/second-header" %>
+  <h1><span class ="bookmark-title"><%= current_user.nickname%>のお気に入り商品</span></h1>
+  <ul class='item-lists'>
+    <% if @bookmarks[0] != nil%>
+      <% @bookmarks.each do |bookmark|%>
+        <li class='list'>
+          <%= link_to item_path(bookmark) do %>
+            <div class='item-img-content'>
+              <%= image_tag bookmark.images[0], class: "item-img" %>
+            </div>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                <%= bookmark.name %>
+              </h3>
+              <div class='item-price'>
+                <span><%= bookmark.price %>円<br>(税込み)</span>
+                <div class='star-btn'>
+                  <%= image_tag "star.png", class:"star-icon" %>
+                  <span class='star-count'>0</span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    <% else %>
+      <h1><span class ="no-items">商品が見つかりませんでした。</span></h1>
+    <% end %>
+  </ul>
+<%= render "shared/footer" %>
