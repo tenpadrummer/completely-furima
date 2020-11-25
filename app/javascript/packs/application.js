@@ -14,6 +14,7 @@ require("../tag");
 require("../search_result");
 require("../header");
 require("../item_history");
+require("../slick");
 
 
 
