@@ -124,7 +124,11 @@
     <label class="form-text">総売上金額</label>
   </div>
   <div class='input-default'>
-    ￥<%= sum_price.to_s(:delimited) %>
+    <%if @user.item_purchase %>
+      ￥<%= @sum_price.to_s(:delimited) %>
+    <% else %>
+      <label class="form-text">￥0</label>
+    <% end %>
   </div>
 </div>
 <div class='delete-btn'>

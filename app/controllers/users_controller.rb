@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy]
+  before_action :sum_price, only: [:show]
+
 
   def show
     @user_info = @user.user_info
@@ -23,5 +25,11 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def sum_price
+    @item_ids = ItemPurchase.where.not(user_id: current_user.id).pluck(:item_id)
+    @got_items = Item.find(@item_ids)
+    @sum_price = @got_items.pluck(:price).sum
   end
 end

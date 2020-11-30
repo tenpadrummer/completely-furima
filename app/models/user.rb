@@ -25,4 +25,10 @@ class User < ApplicationRecord
   has_one :user_info, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_items, through: :bookmarks, source: :item
+
+  def sum_price
+    item_ids = ItemPurchase.where(user_id: self.id).pluck(:user_id)
+    got_items = Item.find(item_ids)
+    got_items.pluck(:price).sum
+  end
 end
