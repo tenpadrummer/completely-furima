@@ -1,6 +1,6 @@
 <% breadcrumb :bookmark %>
 <%= render "shared/second-header" %>
-  <h1><span class ="bookmark-title"><%= current_user.nickname%>のお気に入り商品</span></h1>
+  <h1><span class ="bookmark-title"><%= current_user.nickname%>のお気に入り</span></h1>
   <ul class='item-lists'>
     <% if @bookmarks[0] != nil%>
       <% @bookmarks.each do |bookmark|%>
