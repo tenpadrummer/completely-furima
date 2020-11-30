@@ -15,8 +15,11 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @category_item = Item.where(category_id: @item.category_id)
+    @seller_item = Item.where(user_id: current_user.id)
     @comment = Comment.new
     @comments = @item.comments
+    console
   end
 
   def new

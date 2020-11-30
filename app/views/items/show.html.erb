@@ -126,7 +126,62 @@
       <%= link_to "次の商品 ＞", item_path(@item.next) if @item.next %>
     </div>
   </div>
-  <a href="#" class='another-item'><%= "商品のカテゴリー名" %>をもっと見る</a>
+  <h2 class='another-item'><%= @item.category.name %>の商品をもっと見る</h2>
+  <ul class='item-lists'>
+    <% if @category_item != nil%>
+      <% @category_item.each do |item|%>
+        <li class='list'>
+          <%= link_to item_path(item) do %>
+            <div class='item-img-content'>
+              <%= image_tag item.images[0], class: "item-img" %>
+            </div>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                <%= item.name %>
+              </h3>
+              <div class='item-price'>
+                <span><%= item.price %>円<br>(税込み)</span>
+                <div class='star-btn'>
+                  <%= image_tag "star.png", class:"star-icon" %>
+                  <span class='star-count'>0</span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    <% else %>
+      <h1><span class ="no-items">商品が見つかりませんでした。</span></h1>
+    <% end %>
+  </ul>
+  <h2 class='another-item'><%= @item.user.nickname %>の商品をもっと見る</h2>
+  <ul class='item-lists'>
+    <% if @seller_item != nil%>
+      <% @seller_item.each do |item|%>
+        <li class='list'>
+          <%= link_to item_path(item) do %>
+            <div class='item-img-content'>
+              <%= image_tag item.images[0], class: "item-img" %>
+            </div>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                <%= item.name %>
+              </h3>
+              <div class='item-price'>
+                <span><%= item.price %>円<br>(税込み)</span>
+                <div class='star-btn'>
+                  <%= image_tag "star.png", class:"star-icon" %>
+                  <span class='star-count'>0</span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    <% else %>
+      <h1><span class ="no-items">商品が見つかりませんでした。</span></h1>
+    <% end %>
+  </ul>
 </div>
 
 <%= render "shared/footer" %>
