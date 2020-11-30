@@ -7,11 +7,11 @@ class ItemsController < ApplicationController
   before_action :search_category, only: [:index, :show, :item_search, :category_search]
 
   def index
-    @items = Item.all.order(created_at: :desc)
-    @ladies = Item.where(category_id: 1)
-    @mens = Item.where(category_id: 2)
-    @sports = Item.where(category_id: 9)
-    @hobbies = Item.where(category_id: 6)
+    @items = Item.all.order(created_at: :desc).with_attached_images
+    @ladies = Item.where(category_id: 1).with_attached_images
+    @mens = Item.where(category_id: 2).with_attached_images
+    @sports = Item.where(category_id: 9).with_attached_images
+    @hobbies = Item.where(category_id: 6).with_attached_images
   end
 
   def show

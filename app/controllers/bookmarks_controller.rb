@@ -19,7 +19,7 @@ class BookmarksController < ApplicationController
   end
 
   def bookmarks
-    @items = current_user.bookmark_items.includes(:user).recent
+    @items = current_user.bookmark_items.includes(:user).with_attached_images.recent
   end
 
   private
